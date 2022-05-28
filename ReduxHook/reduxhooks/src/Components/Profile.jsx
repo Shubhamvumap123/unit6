@@ -16,7 +16,7 @@ const Profile = ({username, token}) => {
         .then((res)=> console.log(err))
         .catch((err)=> console.log(err));
     },[]);
-
+    console.log("profile",profile)
   return (
 
     <div>
