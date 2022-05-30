@@ -14,13 +14,16 @@ const {isAuthenticated} = useSelector ((state) => state.login)
 
   return (
     <div className="App">
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/TodoCreate">Todos</Link>
+      </div>
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route
           path="/"
-          
           element={
-           
             <PrivateRoutes isAuthenticated={isAuthenticated}>
               <Home />
             </PrivateRoutes>

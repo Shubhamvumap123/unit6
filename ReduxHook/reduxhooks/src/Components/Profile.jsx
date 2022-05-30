@@ -5,27 +5,27 @@ const Profile = ({username, token}) => {
 
     useEffect(() =>
     {
-        fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                Authorization : `Bearer ${token}`
-            }
- 
-        }) .then((res)=> res.json())
-        .then((res)=> console.log(err))
-        .catch((err)=> console.log(err));
+        fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`, {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => setprofile(res))
+          .catch((err) => console.log(err));
     },[]);
     console.log("profile",profile)
   return (
 
     <div>
         <h1>Profile</h1>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>Name:{profile.name}</p>
+        <p>Email:{profile.email}</p>
+        <p>username:{profile.username}</p>
+        <p>discriptions:{profile.description}</p>
+        <p>mobile:{profile.mobile}</p>
     </div>
   )
 }
