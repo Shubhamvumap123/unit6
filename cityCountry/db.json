@@ -1,0 +1,75 @@
+{
+  "country":   [{
+  "id": 1,
+  "Country": "China"
+}, {
+  "id": 2,
+  "Country": "Czech Republic"
+}, {
+  "id": 3,
+  "Country": "Japan"
+}, {
+  "id": 4,
+  "Country": "Thailand"
+}, {
+  "id": 5,
+  "Country": "China"
+}, {
+  "id": 6,
+  "Country": "Portugal"
+}, {
+  "id": 7,
+  "Country": "Germany"
+}, {
+  "id": 8,
+  "Country": "Brazil"
+}, {
+  "id": 9,
+  "Country": "Latvia"
+}, {
+  "id": 10,
+  "Country": "China"
+}],
+
+"cities":[{
+  "id": 1,
+  "City": "Mhlume",
+  "Population": "6159186620"
+}, {
+  "id": 2,
+  "City": "Bystra",
+  "Population": "9271740777"
+}, {
+  "id": 3,
+  "City": "Xiongbei",
+  "Population": "4610534657"
+}, {
+  "id": 4,
+  "City": "Västerås",
+  "Population": "5246699919"
+}, {
+  "id": 5,
+  "City": "Mijiang",
+  "Population": "4950253301"
+}, {
+  "id": 6,
+  "City": "Cimenga",
+  "Population": "0500690588"
+}, {
+  "id": 7,
+  "City": "Port Louis",
+  "Population": "0214074587"
+}, {
+  "id": 8,
+  "City": "Kristinehamn",
+  "Population": "7173158745"
+}, {
+  "id": 9,
+  "City": "Jiaqiao",
+  "Population": "5777255582"
+}, {
+  "id": 10,
+  "City": "Ochobo",
+  "Population": "0845975668"
+}]
+}

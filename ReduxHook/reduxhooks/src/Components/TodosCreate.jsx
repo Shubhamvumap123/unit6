@@ -1,5 +1,5 @@
 import React from "react";
-
+// import {action} from "../Redux/Login/action"
 const initialState = {
   title: "",
   description: "",
@@ -13,6 +13,7 @@ const initialState = {
   date: " ",
 };
 const reducer = (state, { type, payload }) => {
+  console.log(state)
   switch (type) {
     case "UPDATE_TITLE":
       return { ...state, title: payload };
@@ -21,7 +22,7 @@ const reducer = (state, { type, payload }) => {
     case "UPDATE_STATUS":
       return { ...state, status: payload };
     case "UPDATE_TAGS":
-      return { ...state, tags: { ...state.tags, ...action.payload } };
+      return { ...state, tags: { ...state.tags,...payload } };
     default:
       throw new Error("please give proper action object");
   }
@@ -29,6 +30,7 @@ const reducer = (state, { type, payload }) => {
 const TodosCreate = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const { title, description, subtasks, status, tags, date } = state;
+  const {official, personal, others} = tags
   return (
     <div>
       <input
@@ -67,7 +69,7 @@ const TodosCreate = () => {
         <input
           type="radio"
           checked={status === "Inprogress"}
-          onChange={(e) => {
+          onChange={(e) => { 
             dispatch({ type: "UPDATE_STATUS", payload: "Inprogress" });
           }}
         />
@@ -89,14 +91,15 @@ const TodosCreate = () => {
       <br />
       <div>
            <label >
-          <input type="checkbox" checked={official} onChange={(e)=>{
-            dispatch({ type: "UPDATE_TAGS",payload:{official: e.target.checked}})
+          <input type="checkbox" checked ={official}  onChange={(e)=>{
+            dispatch({ type: "UPDATE_TAGS",
+            payload:{official: e.target.checked}})
           }}/>
           OFFICIAL
         </label>  
         <br/>
-           <label >
-          <input type="checkbox" checked={personal} onChange={(e)=>{
+           <label>
+          <input type="checkbox" checked={personal}  onChange={(e)=>{
              dispatch({
                type: "UPDATE_TAGS",
                payload: { personal: e.target.checked },
@@ -105,7 +108,7 @@ const TodosCreate = () => {
          PERSONAL
         </label>
         <br />
-        <label >
+        <label>
           <input type="checkbox" checked={others} onChange={(e)=>{
              dispatch({
                type: "UPDATE_TAGS",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import Home from './Components/Home'
 import './App.css'
@@ -19,11 +19,12 @@ const {isAuthenticated} = useSelector ((state) => state.login)
         <Link to="/login">Login</Link>
         <Link to="/TodoCreate">Todos</Link>
       </div>
+      
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<Login/>}></Route>
         <Route
           path="/"
-          element={
+          element= {
             <PrivateRoutes isAuthenticated={isAuthenticated}>
               <Home />
             </PrivateRoutes>
