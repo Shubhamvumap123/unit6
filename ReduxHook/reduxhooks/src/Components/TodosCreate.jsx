@@ -29,8 +29,15 @@ const reducer = (state, { type, payload }) => {
         case "UPDATE_SUBTASKS":
           return { ...state, subtasks:[...state.subtasks, payload]};
           case "TOGGLE_SUBTASK":
-            const subtasksAfterToggle = state.subtasks.map((e)=>el.id === payload.id ? {...el, subtaskStatus:payload.status} : el)
+            const subtasksAfterToggle = state.subtasks.map((el)=>el.id === payload.id ? {...el, subtaskStatus:payload.status} : el)
+
             return { ...state, subtasks: subtasksAfterToggle, };
+
+            case "DELETE_SUBTASK":
+              const subtasksAfterDeletion = state.subtasks.filter(
+                (el) => el.id !== payload
+              );
+              return {...state, subtasks: subtasksAfterDeletion};
     default:
       throw new Error("please give proper action object");
   }
@@ -185,6 +192,7 @@ const TodosCreate = () => {
                 />
                 {subtask.subtaskTitle}
               </label>
+              <button onClick={() => dispatch({type: 'DELETE_SUBTASK',payload: subtask.id})}>DeleteSubtask</button>
             </div>
           ))}
         </div>
