@@ -17,7 +17,7 @@ export const AddCity = () => {
     event.preventDefault();
     setCity({
       ...City,
-      [event.target.name]: [event.target.value],
+      [event.target.name]: event.target.value,
     });
   };
   const clickHandler = (event) => {

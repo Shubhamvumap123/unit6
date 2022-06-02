@@ -1,4 +1,5 @@
 import React from "react";
+import {v4 as uuid} from 'uuid';
 // import {action} from "../Redux/Login/action"
 const initialState = {
   title: "",
@@ -25,8 +26,11 @@ const reducer = (state, { type, payload }) => {
       return { ...state, tags: { ...state.tags,...payload } };
       case "CHANGE_DATE":
         return { ...state, date: payload };
-        case "UPDATE_SUBTASK":
-          return { ...state, subtaask:{...state.subtask, payload}};
+        case "UPDATE_SUBTASKS":
+          return { ...state, subtasks:[...state.subtasks, payload]};
+          case "TOGGLE_SUBTASK":
+            const subtasksAfterToggle = state.subtasks.map((e)=>el.id === payload.id ? {...el, subtaskStatus:payload.status} : el)
+            return { ...state, subtasks: subtasksAfterToggle, };
     default:
       throw new Error("please give proper action object");
   }
@@ -146,21 +150,44 @@ const TodosCreate = () => {
         />
         <br />
         <br />
+
         <h1>Subtask</h1>
         <input
           type="text"
           value={subtaskInputvalue}
           onChange={(e) => setsubtaskInputvalue(e.target.value)}
-        >
-          <button onClick={()=>{
+        />
+        <button
+          onClick={() => {
             const payload = {
-              id:uuid(),
+              id: uuid(),
               subtaskTitle: subtaskInputvalue,
               subtaskStatus: false,
-            }
-            dispatch({type:"UPDATE_SUBTASK", payload})
-          }}></button>
-        </input>
+            };
+            dispatch({ type: "UPDATE_SUBTASKS", payload });
+          }}
+        >
+          Add Subtask
+        </button>
+        <div>
+          {subtasks.map((subtask) => (
+            <div key={subtask.id} style={{ dispay: "flex" }}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={subtask.subtaskstatus}
+                  onChange={(e) =>
+                    dispatch({
+                      type: "TOGGLE_SUBTASK",
+                      payload: { id: subtask, status: e.target.checked },
+                    })
+                  }
+                />
+                {subtask.subtaskTitle}
+              </label>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
