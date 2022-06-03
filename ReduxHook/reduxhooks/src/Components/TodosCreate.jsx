@@ -1,5 +1,7 @@
 import React from "react";
 import {v4 as uuid} from 'uuid';
+import {getTodosData} from "../Redux/Todos/action"
+import {useDispatch} from 'react-redux';
 // import {action} from "../Redux/Login/action"
 const initialState = {
   title: "",
@@ -44,7 +46,18 @@ const reducer = (state, { type, payload }) => {
 };
 const TodosCreate = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
+  const reduxDespatch = useDispatch()
   const [subtaskInputvalue,setsubtaskInputvalue] = React.useState("")
+  const createNewTask =() =>{
+    const payload = {...state};
+    fetch(` http://localhost:3001/todos`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      header: {'content-Type': 'application/json'}
+    }).then(() => reduxDespatch(getTodosData()));
+
+  };
+
   const { title, description, subtasks, status, tags, date } = state;
   const {official, personal, others} = tags
   return (
@@ -197,6 +210,7 @@ const TodosCreate = () => {
           ))}
         </div>
       </div>
+      <button onClick={createNewTask}>CREATE TASK</button>
     </div>
   );
 }; 
